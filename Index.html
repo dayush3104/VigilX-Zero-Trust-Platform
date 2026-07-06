@@ -1342,12 +1342,9 @@ async function runEnhancedVerificationFlow() {
         audio_statusDisplay.textContent = "Verifying Logic...";
         
         // 5. LLM Check (ONLY for Verification)
-        const answerAnalysisMessages = [
-            { role: 'system', content: 'You are a strict logic checker. Does the User Answer logically answer the Question? Ignore minor spelling errors. Reply with exactly one word: CORRECT or INCORRECT.' },
-            { role: 'user', content: `Question: "${questionText}"\nUser Answer: "${transcript}"` }
-        ];
+        const answerAnalysisPrompt = `You are a strict logic checker. Does the User Answer logically answer the Question? Ignore minor spelling errors. Reply with exactly one word: CORRECT or INCORRECT.\n\nQuestion: "${questionText}"\nUser Answer: "${transcript}"`;
         
-        const llmVerdict = await callPerplexityAPI(answerAnalysisMessages);
+        const llmVerdict = await callGeminiForVerification(answerAnalysisPrompt);
         
         // Robust checking logic
         let isCorrect = false;
