@@ -1056,11 +1056,10 @@ async function processKYCVideo() {
 }
 
 async function analyzeKYCWithGemini(base64Frame, challengeText) {
-    const apiKey = "AIzaSyDfXgovIpZL0qeZSMpGzA45XQcSMkap0Tg"; 
+    const apiKey = "AQ.Ab8RN6Ji3aCmPum2oArzXh4NyhSbOzZs3qcfND0yPiJBzkowvg"; 
     
     // CHANGED: Using the 'latest' alias or the specific stable version often fixes 404s
-    // We will use 'gemini-1.5-flash-latest' which is generally safer for v1beta
-    const apiUrl =`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+    const apiUrl =`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const prompt = `You are a video verification AI. The user was given the instruction: "${challengeText}". 
     Look at this image frame from their video. 
